@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('title');
             $table->string('description');
             $table->enum('status', ['Pending', 'completed', 'Canceled'])->default('Pending');
-            $table->foreignId('user_ID');
+            $table->foreignId('user_ID')->nullable();
             $table->foreign('user_ID')->references('id')->on('users');
                 
             $table->timestamps();
         
-            $table->foreignId('categorie_ID');
-            $table->foreign('categorie_ID')->references('id')->on('categories');
+            // $table->foreignId('categorie_ID');
+            // $table->foreign('categorie_ID')->references('id')->on('categories');
         });
 
     }

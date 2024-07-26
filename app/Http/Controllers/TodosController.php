@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Todo;
 use Illuminate\Http\Request;
 
@@ -26,20 +27,20 @@ class TodosController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'status' => 'required|string|in:pending,completed,canceled', // Example status options
-            'user_ID' => 'required|exists:users,id' // Ensure user_ID is valid
+            // 'user_ID' => 'required|exists:users,id' // Ensure user_ID is valid
         ], [
             'title.required' => 'The title is required.',
             'description.required' => 'The description is required.',
             'status.in' => 'The status must be either pending, completed, or canceled.',
-            'user_ID.required' => 'The user ID is required.',
-            'user_ID.exists' => 'The user ID must exist in the users table.'
+            // 'user_ID.required' => 'The user ID is required.',
+            // 'user_ID.exists' => 'The user ID must exist in the users table.'
         ]);
 
         $todo = new Todo([
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'status' => $request->input('status'),
-            'user_ID' => $request->input('user_ID') // Add user_ID here
+            // 'user_ID' => $request->input('user_ID') // Add user_ID here
         ]);
 
         $todo->save();
@@ -56,7 +57,7 @@ class TodosController extends Controller
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'status' => 'required|string|in:pending,completed,canceled', // Example status options
-            'user_ID' => 'required|exists:users,id' // Ensure user_ID is valid
+            // 'user_ID' => 'required|exists:users,id' // Ensure user_ID is valid
         ]);
 
         $todo = Todo::find($id);
@@ -135,3 +136,4 @@ class TodosController extends Controller
         return response()->json(['message' => 'Todo permanently deleted']);
     }
 }
+
